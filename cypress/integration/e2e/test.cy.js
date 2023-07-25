@@ -10,12 +10,12 @@ describe('DuckDuckGo Search and Verify Link', () => {
     cy.get('.searchbox_searchButton__F5Bwq').click();
 
     // Step 4: Click on the first search result link.
-    cy.get('li:nth-child(3) > article:nth-child(1) > div:nth-child(2) > h2:nth-child(1) > a')
-      .invoke('attr', 'href')
-      .then((href) => {
-        cy.visit(href);
-        // Step 5: Check if the URL contains "https://www.football-data.org/".
-        cy.request(href).its('body').should('include', 'https://www.football-data.org/');
+    cy.get('li:nth-child(3) > article:nth-child(1) > div:nth-child(2) > h2:nth-child(1) > a').first().invoke('attr', 'href').then((href) => {
+      // Step 5: Check if the URL contains "https://www.football-data.org/" using cy.request().
+      cy.request(href).then((response) => {
+        expect(response.status).to.eq(200);
+        expect(response.body).to.include('https://www.football-data.org/');
       });
+    });
   });
 });
