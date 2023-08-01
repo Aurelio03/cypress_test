@@ -32,9 +32,4 @@ describe('Football Data Tests', () => {
       expect(response.status).to.eq(304)
     })
   })
-
-  it('should perform other test cases...', () => {
-    // Add other test cases as per your requirements
-    // For example, testing interactions on the website, form submissions, etc.
-  })
 })
